@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '~/components/Layout/components/Header';
 
-const DefaultLayout = (props) => {
+const HeaderOnly = (props) => {
   return (
     <div>
       <Header />
@@ -12,4 +12,4 @@ const DefaultLayout = (props) => {
   );
 };
 
-export default DefaultLayout;
+export default HeaderOnly;
