@@ -10,7 +10,7 @@ const AccountItem = () => {
     <div className={cx('wrapper')}>
       <img
         className={cx('avatar')}
-        src="https://p9-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/d7d2aa84b494e467d96d0ba783e47f0d~c5_300x300.webp?x-expires=1699329600&x-signature=xlTSeho6Tp3XoAU7Y3Qfc0kg8Uo%3D"
+        src="https://th.bing.com/th?id=ODL.b683ebf1464cc4218e98124fefd2042b&w=110&h=110&c=6&rs=1&qlt=90&o=6&pid=13.1"
         alt="Hoaa"
       />
       <div className={cx('info')}>
@@ -18,7 +18,7 @@ const AccountItem = () => {
           <span>Free Fire</span>
           <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
         </h4>
-        <span className={cx('username')}>hoa.hassani</span>
+        <span className={cx('username')}>garena.freefire</span>
       </div>
     </div>
   );
