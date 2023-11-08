@@ -6,7 +6,7 @@ const cx = classNames.bind(styles);
 
 const MenuItem = (props) => {
   return (
-    <Button className={cx('menu-item')} to={props.data.to} leftIcon={props.data.icon}>
+    <Button className={cx('menu-item')} to={props.data.to} leftIcon={props.data.icon} onClick={props.onClick}>
       {props.data.title}
     </Button>
   );
