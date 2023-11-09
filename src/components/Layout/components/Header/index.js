@@ -10,8 +10,15 @@ import {
   faMagnifyingGlass,
   faSignIn,
   faSpinner,
+  faCloudUpload,
+  faCoins,
+  faUser,
+  faGear,
+  faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react/';
+import HeadlessTippy from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss';
@@ -19,7 +26,6 @@ import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -53,6 +59,8 @@ const MENU_ITEMS = [
 const Header = () => {
   const [searchResult, setSearchResult] = useState([]);
 
+  const currentUser = true;
+
   useEffect(() => {
     setTimeout(() => {
       setSearchResult([]);
@@ -63,11 +71,36 @@ const Header = () => {
     console.log(menuItem);
   };
 
+  const userMenu = [
+    {
+      icon: <FontAwesomeIcon icon={faUser} />,
+      title: 'View profile',
+      to: '/@hoaa',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faCoins} />,
+      title: 'Get coins',
+      to: '/coin',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faGear} />,
+      title: 'Settings',
+      to: '/settings',
+    },
+    ...MENU_ITEMS,
+    {
+      icon: <FontAwesomeIcon icon={faSignOut} />,
+      title: 'Log out',
+      to: '/logout',
+      separate: true,
+    },
+  ];
+
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
         <img src={images.logo} alt="Tiktok" />
-        <Tippy
+        <HeadlessTippy
           interactive
           visible={searchResult.length > 0}
           render={(attrs) => (
@@ -88,23 +121,41 @@ const Header = () => {
               <FontAwesomeIcon icon={faCircleXmark} />
             </button>
             <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-            <Tippy content="Tìm kiếm">
+            <HeadlessTippy content="Tìm kiếm">
               <button className={cx('search-btn')}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </button>
-            </Tippy>
+            </HeadlessTippy>
           </div>
-        </Tippy>
+        </HeadlessTippy>
         <div className={cx('actions')}>
-          <Button text>Upload</Button>
-          <Button primary rightIcon={<FontAwesomeIcon icon={faSignIn} />}>
-            Log in
-          </Button>
+          {currentUser ? (
+            <Tippy content="Upload video" placement="bottom" delay={[0, 200]}>
+              <button className={cx('action-btn')}>
+                <FontAwesomeIcon icon={faCloudUpload} />
+              </button>
+            </Tippy>
+          ) : (
+            <>
+              <Button text>Upload</Button>
+              <Button primary rightIcon={<FontAwesomeIcon icon={faSignIn} />}>
+                Log in
+              </Button>
+            </>
+          )}
 
-          <Menu items={MENU_ITEMS} onChange={handeMenuChange}>
-            <button className={cx('more-btn')}>
-              <FontAwesomeIcon icon={faEllipsisVertical} />
-            </button>
+          <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handeMenuChange}  visible>
+            {currentUser ? (
+              <img
+                className={cx('user-avatar')}
+                src="https://lh3.googleusercontent.com/a/ACg8ocLmtB-KB4SZVjpSIIBpn__kxwVqDShKS4uloS20l65f9D4=s288-c-no"
+                alt="Lữ Quang Minh"
+              ></img>
+            ) : (
+              <button className={cx('more-btn')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </button>
+            )}
           </Menu>
         </div>
       </div>

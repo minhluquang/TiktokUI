@@ -38,6 +38,7 @@ const Menu = (props) => {
     <Tippy
       interactive
       delay={[0, 700]}
+      offset={[12, 6]}
       placement="bottom-end"
       render={(attrs) => (
         <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
@@ -54,6 +55,9 @@ const Menu = (props) => {
           </PopperWrapper>
         </div>
       )}
+      onHide={() => {
+        setHistory((prev) => prev.slice(0, 1));
+      }}
     >
       {props.children}
     </Tippy>
