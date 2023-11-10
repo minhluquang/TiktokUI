@@ -7,6 +7,7 @@
   border-radius: 4px;
   font-size: 1.6rem;
   font-weight: 700;
+  font-family: 'ProximaNova', sans-serif;
   cursor: pointer;
   background-color: var(--white);
   border: 1px solid transparent;
@@ -14,12 +15,12 @@
   text-decoration: none;
 
   + .wrapper {
-      margin-left: 8px;
+    margin-left: 8px;
   }
 
   &.disabled {
-      pointer-events: none;
-      opacity: 0.5;
+    pointer-events: none;
+    opacity: 0.5;
   }
 }
 
@@ -41,8 +42,8 @@
   border-color: rgba(22, 24, 35, 0.12);
 
   &:hover {
-      border-color: rgba(22, 24, 35, 0.2);
-      background-color: rgba(22, 24, 35, 0.03);
+    border-color: rgba(22, 24, 35, 0.2);
+    background-color: rgba(22, 24, 35, 0.03);
   }
 }
 
@@ -52,8 +53,8 @@
   border-color: var(--primary);
 
   &:hover {
-      border-color: var(--primary);
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+    border-color: var(--primary);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
   }
 }
 
@@ -62,14 +63,14 @@
   border-color: currentColor;
 
   &:hover {
-      border-color: currentColor;
-      background-color: rgba(254, 44, 85, 0.06);
+    border-color: currentColor;
+    background-color: rgba(254, 44, 85, 0.06);
   }
 }
 
 .text {
   &:hover {
-      text-decoration: underline;
+    text-decoration: underline;
   }
 }
 

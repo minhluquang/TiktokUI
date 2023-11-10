@@ -7,10 +7,8 @@ import {
   faEarthAsia,
   faEllipsisVertical,
   faKeyboard,
-  faMagnifyingGlass,
   faSignIn,
   faSpinner,
-  faCloudUpload,
   faCoins,
   faUser,
   faGear,
@@ -26,6 +24,8 @@ import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { InboxIcon, MessageIcon, SearchIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -123,18 +123,30 @@ const Header = () => {
             <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
             <HeadlessTippy content="Tìm kiếm">
               <button className={cx('search-btn')}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <SearchIcon />
               </button>
             </HeadlessTippy>
           </div>
         </HeadlessTippy>
         <div className={cx('actions')}>
           {currentUser ? (
-            <Tippy content="Upload video" placement="bottom" delay={[0, 200]}>
-              <button className={cx('action-btn')}>
-                <FontAwesomeIcon icon={faCloudUpload} />
-              </button>
-            </Tippy>
+            <>
+              <Tippy content="Upload video" placement="bottom" delay={[0, 50]}>
+                <button className={cx('action-btn')}>
+                  <UploadIcon />
+                </button>
+              </Tippy>
+              <Tippy content="Messages" placement="bottom" delay={[0, 50]}>
+                <button className={cx('action-btn')}>
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy content="Inbox" placement="bottom" delay={[0, 50]}>
+                <button className={cx('action-btn')}>
+                  <InboxIcon />
+                </button>
+              </Tippy>
+            </>
           ) : (
             <>
               <Button text>Upload</Button>
@@ -144,13 +156,14 @@ const Header = () => {
             </>
           )}
 
-          <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handeMenuChange}  visible>
+          <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handeMenuChange} visible>
             {currentUser ? (
-              <img
+              <Image
                 className={cx('user-avatar')}
                 src="https://lh3.googleusercontent.com/a/ACg8ocLmtB-KB4SZVjpSIIBpn__kxwVqDShKS4uloS20l65f9D4=s288-c-no"
                 alt="Lữ Quang Minh"
-              ></img>
+                fallback="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
+              ></Image>
             ) : (
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />
