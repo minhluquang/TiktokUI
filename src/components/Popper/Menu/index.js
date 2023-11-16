@@ -9,7 +9,7 @@ import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Menu = (props) => {
+const Menu = (props, {hideOnClick = false}) => {
   const defaultFnc = () => {};
 
   const [history, setHistory] = useState([{ data: props.items }]);
@@ -39,6 +39,7 @@ const Menu = (props) => {
       interactive
       delay={[0, 700]}
       offset={[12, 6]}
+      hideOnClick={hideOnClick}
       placement="bottom-end"
       render={(attrs) => (
         <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
