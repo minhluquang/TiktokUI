@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 import MenuItem from './MenuItem';
 import Header from './Header';
 import styles from './Menu.module.scss';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-const Menu = (props, {hideOnClick = false}) => {
-  const defaultFnc = () => {};
+const defaultFn = () => {};
 
-  const [history, setHistory] = useState([{ data: props.items }]);
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
+  const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
 
   const renderItems = () => {
     return current.data.map((item, index) => {
       const isParent = !!item.children;
+
       return (
         <MenuItem
           key={index}
@@ -26,7 +27,7 @@ const Menu = (props, {hideOnClick = false}) => {
             if (isParent) {
               setHistory((prev) => [...prev, item.children]);
             } else {
-              props.onChange ? props.onChange(item) : defaultFnc(item);
+              onChange(item);
             }
           }}
         />
@@ -38,7 +39,7 @@ const Menu = (props, {hideOnClick = false}) => {
     <Tippy
       interactive
       delay={[0, 700]}
-      offset={[12, 6]}
+      offset={[12, 8]}
       hideOnClick={hideOnClick}
       placement="bottom-end"
       render={(attrs) => (
@@ -52,17 +53,15 @@ const Menu = (props, {hideOnClick = false}) => {
                 }}
               />
             )}
-            {renderItems()}
+            <div className={cx('menu-body')}>{renderItems()}</div>
           </PopperWrapper>
         </div>
       )}
-      onHide={() => {
-        setHistory((prev) => prev.slice(0, 1));
-      }}
+      onHide={() => setHistory((prev) => prev.slice(0, 1))}
     >
-      {props.children}
+      {children}
     </Tippy>
   );
-};
+}
 
 export default Menu;
