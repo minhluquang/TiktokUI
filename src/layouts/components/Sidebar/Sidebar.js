@@ -13,6 +13,7 @@ import {
 
 import styles from './Sidebar.module.scss';
 import SuggestedAccounts from '~/components/SuggestedAccounts';
+import Footer from '~/components/Footer';
 
 const cx = classNames.bind(styles);
 
@@ -31,6 +32,7 @@ const Sidebar = () => {
       </Menu>
       <SuggestedAccounts label="Suggested accounts" />
       <SuggestedAccounts label="Following accounts" />
+      <Footer />
     </aside>
   );
 };

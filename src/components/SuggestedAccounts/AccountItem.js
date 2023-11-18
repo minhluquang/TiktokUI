@@ -21,7 +21,7 @@ const AccountItem = () => {
 
   return (
     <div>
-      <Tippy interactive delay={[800, 0]} placement="bottom" offset={[-20, 0]} render={renderPreview}>
+      <Tippy interactive delay={[800, 0]} placement="bottom" offset={[-20, 0]} render={renderPreview} appendTo={document.body}>
         <div className={cx('account-item')}>
           <img
             className={cx('avatar')}

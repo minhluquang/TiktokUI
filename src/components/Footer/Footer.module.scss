@@ -1,0 +1,33 @@
+.wrapper {
+  border-top: 1px solid #e3e3e4;
+  padding: 16px 0 0 0px;
+}
+
+.footer-item {
+  margin-bottom: 8px;
+}
+
+.item-link, .copy-right {
+  display: inline-block;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-left: 6px;
+  text-decoration: none;
+  color: rgba(22, 24, 35, 0.5);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.copy-right  {
+  cursor: text;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
